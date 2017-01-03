@@ -1,9 +1,13 @@
 package bidata.oracle.mbds.model;
 
+import oracle.kv.table.Row;
+
+import java.io.Serializable;
+
 /**
  * Created by Faliherizo on 29/12/2016.
  */
-public class Person {
+public class Person extends Objet implements Serializable {
     private String pName;
     private String pFirstname;
     private String pAdress;
@@ -32,6 +36,8 @@ public class Person {
         this.pAdress = pAdress;
     }
 
+    @Override
+    protected void Hydratation(Row row){
 
-
+    }
 }

@@ -1,0 +1,26 @@
+## Enter into table creation mode
+table create -name userInfo
+## Now add the fields
+add-field -type STRING -name surname
+add-field -type STRING -name familiarName
+add-field -type STRING -name gender
+add-field -type STRING -name street
+add-field -type STRING -name city
+add-field -type STRING -name state
+add-field -type STRING -name zipcode
+add-field -type STRING -name userPhone
+##add-field -type BINARY -name publickey1
+##add-field -type BINARY -name publickey2
+primary-key -field surname -field familiarName
+shard-key -field surname
+## Exit table creation mode
+exit
+### Must add the parent table before we add the child
+plan add-table -name userInfo -wait
+table create -name userInfo.largeProps
+add-field -type STRING -name propType
+add-field -type BINARY -name voiceGreeting
+add-field -type BINARY -name imageFile
+primary-key -field propType
+exit
+plan add-table -name userInfo.largeProps -wait
